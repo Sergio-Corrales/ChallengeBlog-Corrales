@@ -78,5 +78,29 @@ namespace ChallengeBlog_Corrales.Controllers
 
             return View(ListP);
         }
+
+        
+        public ActionResult GetImage(int Id)
+        {
+            IEnumerable<Post> ListPosts = _Context.Post;
+            List<Post> Lpost = new List<Post>();
+
+            if (ListPosts.Count() > 0)
+            {
+                Post post = new Post();
+                post=ListPosts.FirstOrDefault(x => x.Id == Id);
+
+                if (post.Picture != null)
+                {
+                    return File(post.Picture, "Image/jpeg");
+                    //ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(post.Picture, 0, post.Picture.Length);
+                }
+                else { return null; }
+              
+                //Lpost.Add(post);
+            }
+            else { return View(); }  
+        
+        }
     }
 }

@@ -28,7 +28,7 @@
                 <td style="text-align:center"><img src="@Url.Action("GetImage", "Home", new {Id = oElemento.Id })" style="height:40px; width:40px;"></td>
                 <td>@oElemento.Title</td>
                 <td style="text-align:center">
-                    <input onclick="document.location.href = '@Url.Content("~/Post/Index?Id=" + oElemento.Id)'" type="button" class="btn btn-warning" value="Detalle"  />
+                    <input onclick="document.location.href = '@Url.Content("~/Posts/Index?Id=" + oElemento.Id)'" type="button" class="btn btn-warning" value="Detalle"  />
                 </td>
             </tr>
                 }

@@ -56,6 +56,7 @@ namespace ChallengeBlog_Corrales.Controllers
             {
                 //Seteo el dia de hoy en la creacion del post
                 post.Creation_Date = DateTime.Today;
+                post.State = 1;
 
                 //busco la imagen y la convierto en byte[]
                 foreach (var file in Request.Form.Files)
@@ -72,7 +73,7 @@ namespace ChallengeBlog_Corrales.Controllers
                 _Context.SaveChanges();
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Edit(int? id)
@@ -126,7 +127,9 @@ namespace ChallengeBlog_Corrales.Controllers
             {
                 return NotFound();
             }
-                _Context.Post.Remove(post);
+            post.State = 0;
+
+                _Context.Post.Update(post);
                 _Context.SaveChanges();
 
                 return RedirectToAction("Index", "Home", new { Id = post.Id });

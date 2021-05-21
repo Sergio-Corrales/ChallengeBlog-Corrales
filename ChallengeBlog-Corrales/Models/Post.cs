@@ -36,5 +36,9 @@ namespace ChallengeBlog_Corrales.Models
         [Display(Name = "Fecha de creación")]
         public DateTime Creation_Date { get; set; }
 
+        [Required(ErrorMessage = "Campo Obligatorio")]
+        [Display(Name = "Estado")]
+        public int State { get; set; }
+
     }
 }

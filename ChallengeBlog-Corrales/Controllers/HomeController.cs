@@ -57,22 +57,26 @@ namespace ChallengeBlog_Corrales.Controllers
             {
                 foreach (Post P in ListPosts)
                 {
-                    //string imageBase64Data = Convert.ToBase64String(P.Picture);
-                    //creo un objeto del tableViewModel
-                    HPTVM = new HomePostsTableViewModel();
-                        
-                    HPTVM.Id = P.Id;
-                    HPTVM.Picture = P.Picture; 
-                    HPTVM.Title = P.Title;
-
-                    if (HPTVM.Picture!=null) 
+                    //Si el estado del post es 1 Lo muestro
+                    if (P.State == 1)
                     {
-                        ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(HPTVM.Picture, 0, HPTVM.Picture.Length);
-                    }
-                    
 
-                    //Agrego el objeto a la lista
-                    ListP.Add(HPTVM);
+                        //creo un objeto del tableViewModel
+                        HPTVM = new HomePostsTableViewModel();
+
+                        HPTVM.Id = P.Id;
+                        HPTVM.Picture = P.Picture;
+                        HPTVM.Title = P.Title;
+
+                        if (HPTVM.Picture != null)
+                        {
+                            ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(HPTVM.Picture, 0, HPTVM.Picture.Length);
+                        }
+
+
+                        //Agrego el objeto a la lista
+                        ListP.Add(HPTVM);
+                    }
                 }
             }
 
@@ -93,11 +97,9 @@ namespace ChallengeBlog_Corrales.Controllers
                 if (post.Picture != null)
                 {
                     return File(post.Picture, "Image/jpeg");
-                    //ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(post.Picture, 0, post.Picture.Length);
                 }
                 else { return null; }
-              
-                //Lpost.Add(post);
+             
             }
             else { return View(); }  
         
